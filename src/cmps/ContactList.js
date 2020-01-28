@@ -12,11 +12,3 @@ export default class ContactList extends Component {
         )
     }
 }
-
-
-// const { books, onSelectBook } = props
-
-// return <div className="flex wrap justify-center">{books.map((book, i) => {
-//     return <BookPreview onSelectBook={onSelectBook} key={i} book={book} />
-// })}
-// </div>

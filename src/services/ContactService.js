@@ -19,7 +19,7 @@ function sort(arr) {
   })
 }
 
-function getContacts (filterBy = null) {
+function getContacts (filterBy) {
   return new Promise((resolve, reject) => { 
     var contactsToReturn = contacts;
     if (filterBy && filterBy.term) {

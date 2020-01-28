@@ -1,27 +1,31 @@
 import React, { Component } from 'react'
 
 import ContactList from '../cmps/ContactList'
+import ContactFilter from '../cmps/ContactFilter'
 import ContactService from '../services/ContactService'
 export default class ContactPage extends Component {
-    state = { contacts: [] }
+    state = { contacts: [], filterBy: { term: ''} }
+
     componentDidMount() {
         this.loadContacts()
     }
+
     loadContacts = async () => {
-        const contacts = await ContactService.getContacts()
-        this.setState({ contacts: contacts})
+        const { filterBy } = this.state
+        const contacts = await ContactService.getContacts(filterBy)
+        this.setState({ contacts: contacts })
     }
 
-    onShowContact=(contactId)=>{
-        console.log(contactId);
-        
+
+
+    onSetFilter = (newFilterField) => {
+        this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.loadContacts);
     }
 
     render() {
-        console.log(this.state.contacts);
-
         return (
             <div>
+                <ContactFilter onSetFilter={this.onSetFilter} />
                 <ContactList onShowContact={this.onShowContact} contacts={this.state.contacts} />
             </div>
         )
