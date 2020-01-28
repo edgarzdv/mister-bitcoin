@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link} from 'react-router-dom';
 
 import ContactList from '../cmps/ContactList'
 import ContactFilter from '../cmps/ContactFilter'
@@ -27,6 +28,7 @@ export default class ContactPage extends Component {
             <div>
                 <ContactFilter onSetFilter={this.onSetFilter} />
                 <ContactList onShowContact={this.onShowContact} contacts={this.state.contacts} />
+                
             </div>
         )
     }

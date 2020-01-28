@@ -7,6 +7,7 @@ export default class NavBar extends Component {
                 <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/' exact>Home</NavLink></li>
                 <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/Contact'>Contacts</NavLink></li>
                 <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/Rate'>Rate</NavLink></li>
+                <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/Contact/new'>New Contact</NavLink></li>
             </ul>
         </nav>
     }

@@ -34,3 +34,8 @@
     color: red;
 }
 
+.details-inputs{
+    display: flex;
+    flex-direction: column;
+}
+
