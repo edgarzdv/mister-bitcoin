@@ -1,0 +1,20 @@
+.contact-img{
+    height: 40px;
+}
+
+.contact{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    height: 40px;
+    background-color: rgb(201, 199, 199);
+}
+
+.contact-details{
+    display: flex;
+    align-items: center;
+}
+
+.details-img{
+    height: 180px;
+}
