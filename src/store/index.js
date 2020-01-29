@@ -1,5 +1,5 @@
-import Store from './Store';
-const store = { Store }
+import ContactStore from './Store';
+const store = { ContactStore }
 // debugging only ! remove for production
 // window.store = store
 

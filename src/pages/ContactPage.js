@@ -1,29 +1,26 @@
 import React, { Component } from 'react'
-import {observer, inject} from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import ContactList from '../cmps/ContactList'
 import ContactFilter from '../cmps/ContactFilter'
-// import ContactService from '../services/ContactService'
 
-@inject('Store')
+@inject('ContactStore')
 @observer
 class ContactPage extends Component {
-    state = { contacts: [], filterBy: { term: '' } }
 
     componentDidMount() {
-        this.props.loadContacts()
+        this.props.ContactStore.loadContacts()
     }
 
-
-    onSetFilter = (newFilterField) => {
-        this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.props.loadContacts);
+    setFilter = (filterBy) => {
+        this.props.ContactStore.setFilter(filterBy)
     }
 
     render() {
         return (
             <div>
-                <ContactFilter onSetFilter={this.onSetFilter} />
-                <ContactList onShowContact={this.onShowContact} contacts={this.state.contacts} />
+                <ContactFilter onSetFilter={this.setFilter} />
+                <ContactList onShowContact={this.onShowContact} contacts={this.props.ContactStore.contacts} />
             </div>
         )
     }

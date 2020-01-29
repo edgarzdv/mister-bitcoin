@@ -1,13 +1,13 @@
-*{
+* {
     text-decoration: none;
     list-style-type: none;
 }
 
-.contact-img{
+.contact-img {
     height: 40px;
 }
 
-.contact{
+.contact {
     display: flex;
     align-items: center;
     margin: 10px;
@@ -15,27 +15,38 @@
     background-color: rgb(201, 199, 199);
 }
 
-.contact-details{
+.contact-details {
     display: flex;
     align-items: center;
 }
 
-.details-img{
+.details-img {
     height: 180px;
 }
 
-.nav-bar{
+.nav-bar {
     display: flex;
     justify-content: center;
 }
 
-.nav-item{
+.nav-item {
     padding: 10px;
     color: red;
 }
 
-.details-inputs{
+.details-inputs {
     display: flex;
     flex-direction: column;
 }
 
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.home-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

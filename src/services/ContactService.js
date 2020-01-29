@@ -8,7 +8,9 @@ export default {
   getEmptyContact
 }
 
-let contacts = storageService.loadFromStorage('contacts') || createContacts();
+// let contacts = storageService.loadFromStorage('contacts') || createContacts();
+let contacts =  createContacts();
+console.log(contacts);
 
 function sort(arr) {
   return arr.sort((a, b) => {

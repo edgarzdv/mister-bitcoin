@@ -1,41 +1,45 @@
 import ContactService from "../services/ContactService";
-import { observable, decorate, action, runInAction } from 'mobx'
+import { observable, decorate, action, runInAction, toJS } from 'mobx'
 
-class Store {
+class ContactStore {
+    @observable contact = [];
     @observable contacts = [];
     @observable filterBy = '';
 
-
-    loadContacts = async () => {
-        return ContactService.getContacts(filterBy).then(contacts => {
-            runInAction(() => {
-                this.contacts = contacts
-            })
+    async loadContacts() {
+        const contacts = await ContactService.getContacts(this.filterBy)
+        runInAction(() => {
+            this.contacts = contacts
         })
-        // const { filterBy } = this.state
-        // const contacts = await ContactService.getContacts(filterBy)
-        // this.setState({ contacts: contacts })
     }
 
-    // loadRobots() {
-    //     return robotService.getRobots(this.filterBy).then((robots) => {
-    //         runInAction(() => {
-    //             this.robots = robots
-    //         })
-    //     })
-    // }
-    // @action
-    // setFilter(filterBy) {
-    //     this.filterBy = filterBy;
-    //     this.loadRobots();
-    // }
+    @action
+    setFilter(filterBy) {
+        this.filterBy = filterBy;
+        this.loadContacts();
+    }
 
-    // async addRobot(robot) {
-    //     robot = await robotService.saveRobot(robot)
-    //     runInAction(() => {
-    //         this.robots.push(robot)
-    //     })
-    // }
+    async addContact(contact) {
+        contact = await ContactService.saveContact(contact)
+        runInAction(() => {
+            this.contacts.push(contact)
+        })
+    }
+
+    async loadContact(id) {
+        const contact = await ContactService.getContactById(id)
+        runInAction(() => {
+            this.contact = contact
+        })
+    }
+
+    async deleteContact(id) {
+        id = await ContactService.deleteContact(id)
+        runInAction(() => {
+            this.contacts = this.contacts.filter(contact => contact._id !== id)
+        })
+    }
 }
-let store = new Store();
+
+let store = new ContactStore();
 export default store
