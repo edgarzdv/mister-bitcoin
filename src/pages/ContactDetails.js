@@ -28,7 +28,6 @@ export default class ContactDetails extends Component {
 
     loadContact = async () => {
         if (this.props.match.params) {
-
             const { id } = this.props.match.params;
             const contact = await ContactService.getContactById(id)
             this.setState({ contact: contact })
@@ -71,7 +70,6 @@ export default class ContactDetails extends Component {
                 </div>
                 <button onClick={this.onGoBack}>Back</button>
                 <button onClick={this.onDeleteContact}>Delete</button>
-
             </div>
         )
     }

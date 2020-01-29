@@ -1,26 +1,22 @@
 import React, { Component } from 'react'
-import { Link} from 'react-router-dom';
+import {observer, inject} from 'mobx-react'
 
 import ContactList from '../cmps/ContactList'
 import ContactFilter from '../cmps/ContactFilter'
-import ContactService from '../services/ContactService'
-export default class ContactPage extends Component {
-    state = { contacts: [], filterBy: { term: ''} }
+// import ContactService from '../services/ContactService'
+
+@inject('Store')
+@observer
+class ContactPage extends Component {
+    state = { contacts: [], filterBy: { term: '' } }
 
     componentDidMount() {
-        this.loadContacts()
+        this.props.loadContacts()
     }
-
-    loadContacts = async () => {
-        const { filterBy } = this.state
-        const contacts = await ContactService.getContacts(filterBy)
-        this.setState({ contacts: contacts })
-    }
-
 
 
     onSetFilter = (newFilterField) => {
-        this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.loadContacts);
+        this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.props.loadContacts);
     }
 
     render() {
@@ -28,8 +24,8 @@ export default class ContactPage extends Component {
             <div>
                 <ContactFilter onSetFilter={this.onSetFilter} />
                 <ContactList onShowContact={this.onShowContact} contacts={this.state.contacts} />
-                
             </div>
         )
     }
 }
+export default ContactPage
